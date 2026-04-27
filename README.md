@@ -1,4 +1,4 @@
-# Exam Countdown App
+# Exam Countdown web App
 
 A modern, responsive, and feature-rich web application designed to help students track their upcoming exams with precision and style.
 
