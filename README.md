@@ -2,7 +2,7 @@
 
 A modern, responsive, and feature-rich web application designed to help students track their upcoming exams with precision and style.
 
-[**Live Demo**](https://kotola1.github.io/examflow/)
+[**Experience the app live here:**][(https://kotola1.github.io/examflow/)]
 
 ## 🌟 Features
 
