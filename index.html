@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Countdown | Master Your Schedule</title>
+    <meta name="description" content="Track your upcoming exams with style. A modern, glassmorphic exam countdown timer with live updates and urgency tracking.">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="app-container">
+        <header class="header">
+            <div class="header-top">
+                <h1 class="title">Exam <span class="accent">Countdown</span></h1>
+                <button id="theme-toggle" class="btn-icon glass" title="Toggle Theme">
+                    <i data-lucide="moon" id="theme-icon"></i>
+                </button>
+            </div>
+            <p class="subtitle">Stay ahead of your deadlines with precision.</p>
+        </header>
+
+        <nav class="app-nav glass">
+            <button class="nav-item active" data-tab="dashboard">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Dashboard</span>
+            </button>
+            <button class="nav-item" data-tab="exams">
+                <i data-lucide="list-todo"></i>
+                <span>Exams</span>
+            </button>
+            <button class="nav-item" data-tab="planner">
+                <i data-lucide="calendar-days"></i>
+                <span>Planner</span>
+            </button>
+        </nav>
+
+        <section id="dashboard-section" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card glass">
+                    <span class="stat-label">Total Exams</span>
+                    <span class="stat-value" id="total-exams">0</span>
+                </div>
+                <div class="stat-card glass">
+                    <span class="stat-label">Urgent</span>
+                    <span class="stat-value text-urgent" id="urgent-count">0</span>
+                </div>
+                <div class="stat-card glass">
+                    <span class="stat-label">Closest Exam</span>
+                    <span class="stat-value small" id="closest-exam-name">-</span>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="reminders-container glass">
+                    <div class="section-header">
+                        <h3>Quick Reminders</h3>
+                        <button id="add-reminder" class="btn-icon small"><i data-lucide="plus"></i></button>
+                    </div>
+                    <ul id="reminders-list" class="reminders-list">
+                        <!-- Reminders injected here -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="exams-section" class="tab-content">
+            <section class="input-section glass">
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <i data-lucide="book-open" class="input-icon"></i>
+                        <input type="text" id="exam-name" placeholder="Exam Name" aria-label="Exam Name">
+                    </div>
+                    <div class="input-wrapper">
+                        <i data-lucide="calendar" class="input-icon"></i>
+                        <input type="datetime-local" id="exam-date" aria-label="Exam Date">
+                    </div>
+                    <button id="add-exam" class="btn-primary">
+                        <i data-lucide="plus"></i>
+                        <span>Add</span>
+                    </button>
+                </div>
+            </section>
+
+            <section id="exams-list" class="exams-grid">
+                <!-- Exam cards -->
+            </section>
+
+            <div id="empty-state" class="empty-state glass">
+                <div class="empty-icon-wrapper">
+                    <i data-lucide="sparkles" class="empty-icon"></i>
+                </div>
+                <h3>All clear!</h3>
+                <p>Add an exam to start tracking.</p>
+            </div>
+        </section>
+
+        <section id="planner-section" class="tab-content">
+            <div class="planner-grid" id="planner-grid">
+                <!-- Days of the week -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Reminder Modal -->
+    <div id="reminder-modal" class="modal-overlay">
+        <div class="modal glass">
+            <h3>Add Reminder</h3>
+            <input type="text" id="reminder-text" placeholder="What to remember?">
+            <div class="modal-actions">
+                <button id="close-modal" class="btn-secondary">Cancel</button>
+                <button id="save-reminder" class="btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
