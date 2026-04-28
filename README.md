@@ -34,11 +34,29 @@ A modern, responsive, and feature-rich web application designed to help students
 
 ## 📸 Screenshots
 
-*(Add your screenshots here)*
+<p align="center">
+  <img src="./image/countdown.png" width="600"/>
+</p>
+<p align="center">Countdown Feature</p>
 
+<p align="center">
+  <img src="./image/dashboard.png" width="600"/>
+</p>
+<p align="center">Main Dashboard</p>
+
+<p align="center">
+  <img src="./image/dashboard2.png" width="600"/>
+</p>
+<p align="center">Detailed View</p>
+
+<p align="center">
+  <img src="./image/exams.png" width="600"/>
+</p>
+<p align="center">Exam List</p>
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 Built with ❤️ for better study habits.
+       KOTOLA YACOB
