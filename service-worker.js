@@ -1,4 +1,4 @@
-const CACHE_NAME = 'exam-countdown-v1';
+const CACHE_NAME = 'exam-countdown-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -33,12 +33,17 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Use Stale-While-Revalidate strategy
   event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-      const networkFetch = fetch(event.request).then(response => {
-        // Only cache valid responses from HTTP/HTTPS
-        if (response && response.status === 200 && (response.type === 'basic' || response.type === 'cors') && event.request.url.startsWith('http')) {
+    caches.match(event.request, { ignoreSearch: true }).then(cachedResponse => {
+      // Return the cached response if found
+      if (cachedResponse) {
+        return cachedResponse;
+      }
+      
+      // Otherwise, fetch from the network
+      return fetch(event.request).then(response => {
+        // Dynamically cache successful HTTP requests (e.g., fonts, icons)
+        if (response && response.status === 200 && event.request.url.startsWith('http')) {
           const responseClone = response.clone();
           caches.open(CACHE_NAME).then(cache => {
             cache.put(event.request, responseClone);
@@ -46,10 +51,11 @@ self.addEventListener('fetch', event => {
         }
         return response;
       }).catch(() => {
-        // Network failed, we can silently fail if we have a cached response
-        // which will be returned below
+        // If offline and the request is for an HTML page, return index.html fallback
+        if (event.request.mode === 'navigate' || (event.request.headers.get('accept') && event.request.headers.get('accept').includes('text/html'))) {
+          return caches.match('./index.html', { ignoreSearch: true });
+        }
       });
-      return cachedResponse || networkFetch;
     })
   );
 });
