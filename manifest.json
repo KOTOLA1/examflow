@@ -1,0 +1,22 @@
+{
+  "name": "Exam Countdown",
+  "short_name": "Exams",
+  "description": "A modern, glassmorphic exam countdown timer.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#030508",
+  "theme_color": "#030508",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

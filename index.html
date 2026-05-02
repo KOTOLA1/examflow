@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exam Countdown | Master Your Schedule</title>
     <meta name="description" content="Track your upcoming exams with style. A modern, glassmorphic exam countdown timer with live updates and urgency tracking.">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#030508">
+    <link rel="apple-touch-icon" href="icon.svg">
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,9 +30,14 @@
         <header class="header">
             <div class="header-top">
                 <h1 class="title">Exam <span class="accent">Countdown</span></h1>
-                <button id="theme-toggle" class="btn-icon glass" title="Toggle Theme">
-                    <i data-lucide="moon" id="theme-icon"></i>
-                </button>
+                <div class="header-actions" style="display: flex; gap: 0.5rem;">
+                    <button id="install-btn" class="btn-icon glass" title="Install App" style="display: none;">
+                        <i data-lucide="download"></i>
+                    </button>
+                    <button id="theme-toggle" class="btn-icon glass" title="Toggle Theme">
+                        <i data-lucide="moon" id="theme-icon"></i>
+                    </button>
+                </div>
             </div>
             <p class="subtitle">Stay ahead of your deadlines with precision.</p>
         </header>
@@ -130,6 +138,15 @@
 
     <script src="app.js"></script>
     <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(registration => console.log('ServiceWorker registered'))
+                    .catch(err => console.log('ServiceWorker registration failed', err));
+            });
+        }
+        
         // Initialize Lucide icons
         lucide.createIcons();
     </script>

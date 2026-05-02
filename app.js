@@ -34,6 +34,10 @@ class ExamCountdown {
         this.navItems = document.querySelectorAll('.nav-item');
         this.tabContents = document.querySelectorAll('.tab-content');
 
+        // PWA Install Elements
+        this.installBtn = document.getElementById('install-btn');
+        this.deferredPrompt = null;
+
         this.init();
     }
 
@@ -52,6 +56,25 @@ class ExamCountdown {
         this.themeToggle.addEventListener('click', () => this.toggleTheme());
         this.addBtn.addEventListener('click', () => this.handleAddExam());
         
+        // PWA Install Prompt
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            this.deferredPrompt = e;
+            if (this.installBtn) this.installBtn.style.display = 'flex';
+        });
+
+        if (this.installBtn) {
+            this.installBtn.addEventListener('click', async () => {
+                if (this.deferredPrompt) {
+                    this.deferredPrompt.prompt();
+                    const { outcome } = await this.deferredPrompt.userChoice;
+                    console.log(`User response to the install prompt: ${outcome}`);
+                    this.deferredPrompt = null;
+                    this.installBtn.style.display = 'none';
+                }
+            });
+        }
+
         // Tab switching
         this.navItems.forEach(item => {
             item.addEventListener('click', () => this.switchTab(item.dataset.tab));
